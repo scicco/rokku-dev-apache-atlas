@@ -15,13 +15,13 @@ services:
   zookeeper:
     image: wurstmeister/zookeeper
     hostname: zookeeper
-    ports:
-      - "2181:2181"
+#    ports:
+#      - "2181:2181"
   kafka:
     container_name: kafka
     image: wurstmeister/kafka
-    ports:
-      - "9092:9092"
+#    ports:
+#      - "9092:9092"
     hostname: kafka
     environment:
       KAFKA_CREATE_TOPICS: "create_events:1:1,delete_events:1:1,ATLAS_HOOK:1:1"
