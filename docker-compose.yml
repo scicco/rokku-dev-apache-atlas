@@ -8,12 +8,15 @@ services:
       - "21000:21000"
     depends_on:
       - "zookeeper"
-      - "kafka" 
+      - "kafka"
+    volumes:
+      - atlas-server:/opt/atlas/
+      - ./resources/credentials:/tmp/credentials
   zookeeper:
     image: wurstmeister/zookeeper
     hostname: zookeeper
     ports:
-      - "2181:2181"  
+      - "2181:2181"
   kafka:
     container_name: kafka
     image: wurstmeister/kafka
@@ -26,4 +29,12 @@ services:
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     depends_on:
-      - zookeeper  
+      - zookeeper
+    volumes:
+      - kafka:/kafka
+
+volumes:
+  atlas-server:
+    driver: local
+  kafka:
+    driver: local
