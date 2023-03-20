@@ -1,17 +1,18 @@
-version: "2"
+version: '3.6'
 services:
 
-  atlas-server:
-    build: .
-    image: wbaa/rokku-dev-apache-atlas
+  atlas:
+    build:
+      target: final
+      args:
+        - ATLAS_PASSWORD=${ATLAS_PASSWORD}
     ports:
       - "21000:21000"
     depends_on:
       - "zookeeper"
       - "kafka"
     volumes:
-      - atlas-server:/opt/atlas/
-      - ./resources/credentials:/tmp/credentials
+      - atlas-server:/apache-atlas/
   zookeeper:
     image: wurstmeister/zookeeper
     hostname: zookeeper
