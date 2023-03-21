@@ -16,6 +16,8 @@ services:
   zookeeper:
     image: wurstmeister/zookeeper
     hostname: zookeeper
+    volumes:
+      - zookeeper:/opt/zookeeper-3.4.13/data
 #    ports:
 #      - "2181:2181"
   kafka:
@@ -35,7 +37,9 @@ services:
       - kafka:/kafka
 
 volumes:
-  atlas-server:
+  atlas:
+    driver: local
+  zookeeper:
     driver: local
   kafka:
     driver: local
